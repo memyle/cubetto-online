@@ -1,7 +1,7 @@
 /* Estilos Gerais e Variáveis */
 
 /* Importa fonte Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 
 :root {
@@ -20,7 +20,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     background-color: #f0f2f5;
     color: #333;
@@ -240,7 +240,7 @@ body {
 
 #map-grid {
     width: 100%;
-    max-width: 450px;
+    max-width: 750px;
     aspect-ratio: 1 / 1;
     background-image: var(--map-background-image);
     background-size: 100% 100%;
