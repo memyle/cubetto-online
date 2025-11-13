@@ -1,0 +1,282 @@
+/* Estilos Gerais e Variáveis */
+
+/* Importa fonte Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+
+:root {
+    --color-forward: #e74c3c;
+    --color-left: #f1c40f;
+    --color-right: #2b28c8;
+    --color-function: #2ecc71;
+    --map-background-image: url('mapacubettoufms.png');
+    --map-robot-image: url('robocubetto.png');
+    --grid-size: 6;
+    /* NOVAS variáveis para as legendas */
+    --color-forward-rgb: 231, 76, 60;
+    --color-left-rgb: 241, 196, 15;
+    --color-right-rgb: 43, 40, 200;
+    --color-function-rgb: 46, 204, 113;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* --- LAYOUT PRINCIPAL --- */
+.app-container {
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* Controles - Mapa - Painel */
+    grid-template-rows: auto;
+    grid-template-areas: "controls map panels";
+    gap: 30px;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.controls-wrapper { grid-area: controls; }
+.map-wrapper { grid-area: map; }
+.boards-wrapper { grid-area: panels; }
+
+/* --- PAINEL DE CONTROLES --- */
+.controls-wrapper {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 25px;
+    min-width: 280px;
+    transition: all 0.3s ease;
+}
+
+.controls-wrapper:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+}
+
+.controls-wrapper h1 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+/* agrupa os dois blocos (principal + função) verticalmente */
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    align-items: center;
+}
+
+.command-buttons-group {
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 15px 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.command-buttons-group h3 {
+    font-size: 1rem;
+    color: #34495e;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.button-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.command-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.command-btn:hover:enabled {
+    transform: scale(1.15);
+    box-shadow: 0 0 8px rgba(0,0,0,0.15);
+}
+
+.command-btn.forward { background-color: var(--color-forward); }
+.command-btn.left { background-color: var(--color-left); }
+.command-btn.right { background-color: var(--color-right); }
+.command-btn.function { background-color: var(--color-function); }
+
+.legend-row {
+   
+     background: #fafafa;
+    border-radius: 12px;
+    padding: 15px 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.legend.forward { color: var(--color-forward); }
+.legend.left { color: var(--color-left); }
+.legend.right { color: var(--color-right); }
+.legend.function { color: var(--color-function); }
+
+.action-btn.reset {
+    padding: 10px 24px;
+    background-color: #c0392b;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.action-btn.reset:hover {
+    background-color: #a93226;
+    transform: scale(1.05);
+}
+
+/* --- PAINEL PRINCIPAL (DIREITA) --- */
+.boards-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: #e8d9c4;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.boards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.board-wrapper h2 {
+    margin-top: 0;
+    color: #5f4c3c;
+    font-size: 16px;
+}
+
+.instruction-board {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.board-row {
+    display: flex;
+    gap: 15px;
+}
+.board-row.reverse {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.slot {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0,0,0,0.05);
+    border: 2px dashed #b1a291;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.instruction-block {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    box-shadow: inset 0 -4px rgba(0,0,0,0.2);
+}
+
+.action-btn.run {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #3498db;
+    border: 5px solid white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    flex-shrink: 0;
+}
+
+/* --- MAPA (CENTRO) --- */
+.map-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#map-grid {
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 1 / 1;
+    background-image: var(--map-background-image);
+    background-size: 100% 100%;
+    position: relative;
+    border: 3px solid #34495e;
+    border-radius: 8px;
+}
+
+#robot {
+    position: absolute;
+    width: calc((100% / var(--grid-size)) * 0.7);
+    height: calc((100% / var(--grid-size)) * 0.7);
+    background-image: var(--map-robot-image);
+    background-size: contain;
+    transition: top 0.4s ease, left 0.4s ease, transform 0.4s ease;
+}
+
+/* --- ANIMAÇÃO --- */
+.shake-animation { animation: shake 0.5s ease-in-out; }
+@keyframes shake {
+    0%, 100% { transform: translateX(0) rotate(var(--current-rotation, 0deg)); }
+    25% { transform: translateX(-6px) rotate(var(--current-rotation, 0deg)); }
+    75% { transform: translateX(6px) rotate(var(--current-rotation, 0deg)); }
+}
+
+/* --- RESPONSIVO --- */
+@media (max-width: 1000px) {
+    .app-container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "controls"
+            "map"
+            "panels";
+    }
+    .controls-wrapper, .map-wrapper, .boards-wrapper {
+        justify-content: center;
+        width: 100%;
+    }
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Cubetto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+
+        <div class="map-wrapper">
+            <div id="map-grid">
+                <div id="robot"></div>
+            </div>
+        </div>
+
+        <div class="boards-wrapper">
+            <div class="boards-container">
+                <div class="board-wrapper">
+                    <h2>Painel Principal</h2>
+                    <div id="main-board" class="instruction-board">
+                        <div class="board-row">
+                            <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+                        </div>
+                        <div class="board-row reverse">
+                            <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+                        </div>
+                        <div class="board-row">
+                            <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                <div class="board-wrapper">
+                    <h2>Função</h2>
+                    <div id="function-board" class="instruction-board function-board">
+                         <div class="board-row">
+                            <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+              <button id="reset-button" class="action-btn reset">Resetar</button>
+        </div>
+           <button id="run-button" class="action-btn run" title="Executar"></button>
+        </div>
+        
+
+        <div class="controls-wrapper">
+            <h1>Controles</h1>
+            <div class="control-panel">
+                 <div class="legend-row">
+                        <span class="legend forward">Vermelho: Frente</span>
+                        <span class="legend left">Amarelo: Esquerda</span>
+                        <span class="legend right">Azul: Direita</span>
+                        <span class="legend function">Verde: Função</span>
+                    </div>
+                <div class="command-buttons-group">
+
+                    
+                    <h3>Painel Principal:</h3>
+                    <div class="button-row">
+                        <button id="add-forward" class="command-btn forward"></button>
+                        <button id="add-left" class="command-btn left"></button>
+                        <button id="add-right" class="command-btn right"></button>
+                        <button id="add-function" class="command-btn function"></button>
+                    </div>
+                    <!-- <div class="legend-row">
+                        <span class="legend forward">Vermelho: Frente</span>
+                        <span class="legend left">Amarelo: Esquerda</span>
+                        <span class="legend right">Azul: Direita</span>
+                        <span class="legend function">Verde: Função</span>
+                    </div> -->
+                </div>
+                <div class="command-buttons-group">
+                    <h3>Função:</h3>
+                    <div class="button-row">
+                        <button id="add-fwd-func" class="command-btn forward"></button>
+                        <button id="add-left-func" class="command-btn left"></button>
+                        <button id="add-right-func" class="command-btn right"></button>
+                    </div>
+                  
+                </div>
+            </div>
+            <button id="reset-button" class="action-btn reset">Resetar</button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
