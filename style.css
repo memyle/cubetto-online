@@ -90,7 +90,7 @@ body {
     padding: 15px 10px;
     box-shadow: inset 0 0 6px rgba(0,0,0,0.05);
     width: 100%;
-    max-width: 260px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -136,7 +136,7 @@ body {
     padding: 15px 10px;
     box-shadow: inset 0 0 6px rgba(0,0,0,0.05);
     width: 100%;
-    max-width: 260px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -266,17 +266,104 @@ body {
     75% { transform: translateX(6px) rotate(var(--current-rotation, 0deg)); }
 }
 
-/* --- RESPONSIVO --- */
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
+    /* Altera o layout de grid para uma única coluna */
     .app-container {
         grid-template-columns: 1fr;
+        /* Reorganiza a ordem dos elementos para: Mapa, Controles, Painéis */
         grid-template-areas:
-            "controls"
             "map"
+            "controls"
             "panels";
+        gap: 20px;
     }
-    .controls-wrapper, .map-wrapper, .boards-wrapper {
-        justify-content: center;
+
+    /* Ocupa a largura total da tela para o mapa */
+    .map-wrapper {
         width: 100%;
+    }
+    
+    /* Centraliza e garante largura total para os controles em telas menores */
+    .controls-wrapper {
+        padding: 20px;
+        max-width: 100%;
+        /* Garante que o painel de controle utilize a largura total */
+        width: 100%; 
+    }
+
+    /* Adapta os painéis de instrução e o botão de Run */
+    .boards-wrapper {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+        /* Garante que o painel utilize a largura total da coluna */
+        width: 100%;
+    }
+    
+    /* Centraliza o grid do mapa no contêiner */
+    #map-grid {
+        max-width: 90vw; /* Usa 90% da largura da viewport */
+        margin: 0 auto; /* Centraliza o mapa na horizontal */
+    }
+    
+    /* Ajusta a posição do botão de Run para ficar centralizado abaixo do boards-wrapper */
+    .boards-wrapper {
+        position: relative;
+        /* Altera para flex-start para que os sub-painéis não sejam esticados desnecessariamente */
+        align-items: flex-start; 
+    }
+
+    /* O botão de Run precisa ser reposicionado ou adaptado para o novo layout. 
+       No layout atual, ele está fora do boards-wrapper, mas na Media Query ele fica
+       melhor posicionado se estiver dentro de um wrapper flexível ou com um novo posicionamento.
+       Vamos movê-lo para dentro do boards-wrapper no HTML, como sugerido no passo 3.
+       Para a posição original, ele flutuaria para o lado:
+    */
+    .action-btn.run {
+        /* Desfaz o alinhamento flexível que o jogava para o lado */
+        margin: 0 auto; 
+        /* Adiciona margem superior para separar dos painéis */
+        margin-top: 15px; 
+    }
+}
+/* --- ADICIONAR ESTE BLOCO NO FINAL DO ARQUIVO CSS --- */
+.action-buttons-group {
+    display: flex;
+    flex-direction: column; /* Empilha verticalmente por padrão (mobile-first) */
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    margin-top: 10px; 
+}
+
+/* Sobrescreve a media query para colocar o botão Run em primeiro para melhor UX */
+@media (max-width: 900px) {
+    /* ... (Restante do código da Media Query) ... */
+    
+    /* Remove o estilo antigo do botão reset/run no boards-wrapper */
+    .boards-wrapper > .action-btn.reset, 
+    .boards-wrapper > .action-btn.run {
+        display: none; /* Esconde os botões fora do novo grupo, se ainda existirem */
+    }
+
+    /* Em telas menores, mantém os botões empilhados */
+    .action-buttons-group {
+        flex-direction: column;
+    }
+    
+    /* Ajuste o botão de reset para ocupar a largura total no móvel */
+    .action-btn.reset {
+        width: 100%;
+        max-width: 250px; /* Um limite para não ficar muito largo */
+    }
+}
+
+/* Para telas maiores (desktop), pode-se optar por deixá-los lado a lado se houver espaço */
+@media (min-width: 901px) {
+    .action-buttons-group {
+        flex-direction: row-reverse; /* Run na direita, Reset na esquerda */
+        justify-content: center;
+        align-items: center;
+        gap: 25px; 
     }
 }
