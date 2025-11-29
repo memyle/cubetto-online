@@ -6,8 +6,8 @@
 
 :root {
     --color-forward: #e74c3c;
-    --color-left: #f1c40f;
-    --color-right: #2b28c8;
+    --color-left: #2b28c8;
+    --color-right: #f1c40f;
     --color-function: #2ecc71;
     --map-background-image: url('mapacubettoufms.png');
     --map-robot-image: url('robocubetto.png');
